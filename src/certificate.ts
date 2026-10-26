@@ -1,7 +1,7 @@
+import { formatarNome } from "./certificado";
 import {
   EVENT_DATE,
   formatEventDate,
-  formatParticipantName,
   layoutParticipantName,
   validateParticipantName,
 } from "./lib/certificate";
@@ -166,7 +166,7 @@ async function submitCertificate(
   elements.status.textContent = "Gerando seu certificado neste navegador…";
   const request = controller.getState().generation;
   try {
-    const name = formatParticipantName(elements.input.value);
+    const name = formatarNome(elements.input.value);
     drawCertificate(elements.canvas, name);
     const blob = await createPng(elements.canvas);
     if (request !== controller.getState().generation) return;

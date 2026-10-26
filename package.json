@@ -12,6 +12,7 @@
     "format": "biome check --write src scripts tests",
     "typecheck": "tsc --noEmit",
     "test": "bun test",
+    "test:browser": "bun scripts/browser-check.ts",
     "check": "bun run lint && bun run typecheck && bun run test && bun run build"
   },
   "devDependencies": {

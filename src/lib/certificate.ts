@@ -1,3 +1,6 @@
+import { formatarNome as formatParticipantName } from "../certificado";
+
+export { formatParticipantName };
 export const EVENT_DATE = "2026-10-28";
 export const MAX_NAME_LENGTH = 120;
 
@@ -15,13 +18,6 @@ const months = [
   "novembro",
   "dezembro",
 ] as const;
-
-export function formatParticipantName(name: string): string {
-  return name
-    .normalize("NFC")
-    .replace(/\p{Zs}+/gu, " ")
-    .replace(/^ +| +$/g, "");
-}
 
 export function validateParticipantName(name: string): string | null {
   const formatted = formatParticipantName(name);
