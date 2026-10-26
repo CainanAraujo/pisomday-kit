@@ -40,7 +40,8 @@
       </section>
 
       <section class="section" id="pedido" aria-labelledby="pedido-title">
-        <div class="section-heading"><p class="eyebrow">01 / COLOQUE EM PRÁTICA</p><h2 id="pedido-title">Um pedido que dá direção.</h2><p>Preencha os quatro campos. Antes de copiar, retire dados pessoais, internos ou de clientes.</p></div>
+        <div class="section-heading"><p class="eyebrow">01 / COLOQUE EM PRÁTICA</p><h2 id="pedido-title">Um pedido que dá direção.</h2><p>Quatro campos antes de pedir qualquer coisa para uma IA. Vale para texto, planilha, código, resposta de cliente — qualquer tarefa.</p></div>
+        <p class="notice"><strong>Regra fixa:</strong> nunca cole dado de cliente, de pessoa ou segredo da empresa. Troque nomes e números por versões fictícias antes de colar.</p>
         <div class="prompt-layout">
           <form id="prompt-form" class="panel" aria-label="Montar pedido completo">
             <label for="prompt-objective"><span class="field-number">1</span> Objetivo <span class="field-hint">O que você quer alcançar?</span></label>
@@ -64,12 +65,34 @@ Formato: [como a resposta deve ser entregue]
 
 Critério de pronto: [o que você vai conferir]</pre>
             <p class="small-copy">Os campos ficam apenas nesta página. Nada é enviado para uma IA automaticamente.</p>
+            <details class="field-guide"><summary>O que colocar em cada campo</summary><div><dl><dt>Objetivo</dt><dd>para que serve o resultado. &quot;Uma ata para enviar a quem faltou&quot; é objetivo; &quot;resume isso&quot; não é.</dd><dt>Contexto</dt><dd>o que a IA precisa saber que não está no texto colado. Quem participou, qual a política, qual o canal, o que já foi tentado.</dd><dt>Formato</dt><dd>a forma exata da resposta. Tabela com estas colunas, mensagem de no máximo 6 linhas, lista em tópicos.</dd><dt>Critério de pronto</dt><dd>como você vai saber que está bom. &quot;Toda pendência tem responsável e data&quot; — se o resultado não cumpre, você pede ajuste em vez de reescrever.</dd></dl><p>Por que funciona: objetivo dá direção, contexto evita invenção, formato evita retrabalho, critério de pronto permite conferir sem opinião.</p></div></details>
             <h3>Veja um exemplo da sua rotina</h3>
+            <p class="notice">Dados fictícios — nunca cole dado real de cliente, de pessoa ou segredo da empresa.</p>
+            <p class="small-copy">As notas “Testado em 26/10” registram os testes relatados pela equipe que preparou o material.</p>
             <div id="prompt-examples">
-              <details><summary>Atendimento e operação</summary><p class="pending">[[PENDENTE codewhale]] Exemplo preenchido em revisão.</p></details>
-              <details><summary>Gestão</summary><p class="pending">[[PENDENTE codewhale]] Exemplo preenchido em revisão.</p></details>
-              <details><summary>Desenvolvimento</summary><p class="pending">[[PENDENTE codewhale]] Exemplo preenchido em revisão.</p></details>
+              <details><summary>Atendimento e operação</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: responder uma cliente que reclamou de atraso na entrega, sem prometer o que não depende de mim.
+
+Contexto: cliente comprou uma cadeira de escritório na segunda, prazo era 3 dias úteis, hoje é o 5º dia útil e a transportadora não atualizou o rastreio. Política da empresa: atraso acima de 2 dias úteis dá frete grátis no próximo pedido.
+
+Formato: mensagem de WhatsApp, no máximo 6 linhas, tom direto e sem juridiquês.
+
+Critério de pronto: pede desculpas sem assumir culpa indevida, explica o que vou fazer agora e quando volto a falar com ela.</pre><p class="test-note"><strong>Testado em 26/10:</strong> a IA devolveu a mensagem pronta e ainda avisou que o frete grátis <strong>ainda não</strong> valia (o atraso era de exatamente 2 dias úteis) e que o &quot;quando volto a falar&quot; precisa ser um horário que eu controle. O critério de pronto fez o trabalho de conferência aparecer.</p></div></details>
+              <details><summary>Gestão</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: preparar uma conversa de 1:1 com um colaborador.
+
+Contexto: Rafael, analista de suporte, 8 meses na equipe. Números do mês: 92% dos chamados resolvidos no prazo, mas 3 reclamações de clientes sobre tom nas respostas. Ele pediu para conversar sobre crescimento na carreira.
+
+Formato: pauta com 3 perguntas para abrir, 1 ponto de reconhecimento e 1 ponto de atenção, em tópicos.
+
+Critério de pronto: os pontos saem dos fatos, não da minha opinião; cada ponto tem um exemplo concreto.</pre><p class="test-note"><strong>Testado em 26/10:</strong> a pauta saiu baseada nos números, e a IA pediu <strong>o trecho exato</strong> das 3 respostas reclamadas antes de afirmar qualquer coisa sobre o tom — sem isso, o ponto de atenção ficaria genérico.</p></div></details>
+              <details><summary>Desenvolvimento</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: revisar uma mudança antes de eu aprovar.
+
+Contexto: função de desconto que ganhou uma regra nova: pedidos acima de R$ 500 ganham 10% de desconto. O diff adicionou a condição e mudou o arredondamento de 2 para 3 casas.
+
+Formato: lista de problemas encontrados, cada um com a linha onde está e por que importa.
+
+Critério de pronto: separa problema que trava o merge de sugestão de melhoria.</pre><p class="test-note"><strong>Testado em 26/10:</strong> sem o diff colado, a IA se recusou a apontar linhas e devolveu hipóteses (&quot;arredondamento de 3 casas em dinheiro quebra centavos; confirme se é <code>&gt;</code> e não <code>&gt;=</code>&quot;). Lição do teste: <strong>prompt sem o código de verdade = revisão de mentira</strong>. Cole o diff.</p></div></details>
             </div>
+            <details><summary>Erros comuns para evitar</summary><div><ul><li>&quot;Resume isso&quot; — sem objetivo nem formato, volta texto que você reescreve.</li><li>Pedido gigante (&quot;organiza a área inteira&quot;) — volta plano genérico. Recorte em uma entrega pequena.</li><li>Sem critério de pronto — você não sabe quando parar nem o que cobrar.</li><li>Colar dado real de cliente — não faça. Versão fictícia, sempre.</li></ul></div></details>
           </aside>
         </div>
       </section>
@@ -80,23 +103,196 @@ Critério de pronto: [o que você vai conferir]</pre>
           <input type="radio" name="role" id="role-operation" value="operation" checked><label for="role-operation">Atendimento / Operação</label>
           <input type="radio" name="role" id="role-management" value="management"><label for="role-management">Gestão</label>
           <input type="radio" name="role" id="role-development" value="development"><label for="role-development">Dev</label>
-          <div class="role-content" id="role-operation-content"><h3>Atendimento e operação</h3><div id="content-operation"><p class="pending">[[PENDENTE codewhale]] Pedidos e critérios de conferência em preparação.</p></div></div>
-          <div class="role-content" id="role-management-content"><h3>Gestão</h3><div id="content-management"><p class="pending">[[PENDENTE codewhale]] Pedidos e critérios de conferência em preparação.</p></div></div>
-          <div class="role-content" id="role-development-content"><h3>Desenvolvimento</h3><div id="content-development"><p class="pending">[[PENDENTE codewhale]] Pedidos e critérios de conferência em preparação.</p></div></div>
+          <div class="role-content" id="role-operation-content"><h3>Atendimento e operação</h3><div id="content-operation"><p>8 prompts prontos, no formato do pedido completo. Troque o que está entre colchetes pelos seus dados <strong>fictícios</strong> (nunca dados reais de cliente), cole e ajuste o que voltar.</p><p class="notice"><strong>Regra fixa:</strong> nunca cole dado de cliente, de pessoa ou segredo da empresa no prompt. Troque nomes, números de pedido e telefones por versões fictícias antes de colar.</p><p class="small-copy">Todos os nomes, números e situações abaixo são exemplos fictícios. As notas de teste registram os resultados relatados pela equipe que preparou o material.</p>
+              <details><summary>1. Resumo de atendimento para o sistema</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: resumir um atendimento para o sistema da empresa.
+
+Contexto: conversa por chat com cliente fictícia &quot;Mariana&quot;, 12 minutos: pedido #4821 de dois ventiladores chegou com um quebrado. Orientei tirar foto e enviar; foto recebida; abri troca; prazo informado de 5 dias úteis. Cliente perguntou se pode retirar na loja — respondi que sim, na unidade Centro.
+
+Formato: 4 linhas no máximo, com campos Motivo, Ação, Próximo passo, Prazo.
+
+Critério de pronto: quem pegar o chamado amanhã entende o que já foi feito sem ler a conversa inteira.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> o prazo conta a partir de quando (abertura da troca?) e se a unidade tem o item em estoque antes de confirmar retirada.</p><p class="test-note"><strong>Testado em 26/10:</strong> saiu o resumo em 4 campos e a IA avisou duas suposições que fez (início do prazo, checagem de estoque) — sinal de que pediu para eu conferir.</p></div></details>
+              <details><summary>2. Resposta a cliente irritado</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: responder uma cliente irritada por atraso na entrega.
+
+Contexto: cliente &quot;Sônia&quot; comprou uma cadeira na segunda, prazo de 3 dias úteis, hoje é o 5º dia útil sem atualização no rastreio. Política da empresa: atraso acima de 2 dias úteis dá frete grátis no próximo pedido. Não tenho como acelerar a transportadora.
+
+Formato: mensagem de WhatsApp, no máximo 6 linhas, direta, sem juridiquês.
+
+Critério de pronto: reconhece o problema sem culpar a transportadora abertamente, diz o que farei agora e quando volto a falar com ela, oferece o que a política permite.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> o horário que você promete retornar (tem que ser um que você cumpre) e se você realmente consegue acionar a logística — senão troque o verbo.</p><p class="test-note"><strong>Testado em 26/10:</strong> resposta pronta + lembretes: não prometer data de entrega nem reembolso (não dependem de mim), e o frete grátis só vale depois de 2 dias úteis de atraso.</p></div></details>
+              <details><summary>3. Classificação de chamados por motivo</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: classificar chamados da semana por motivo.
+
+Contexto: lista fictícia de 10 chamados de uma loja de móveis: 4 sobre prazo de entrega, 3 sobre troca/devolução, 2 sobre montagem agendada, 1 sobre nota fiscal. Quero ver se há um motivo dominante.
+
+Formato: tabela Motivo | Quantidade, ordenada do maior para o menor, e 1 linha apontando o motivo dominante.
+
+Critério de pronto: a soma das quantidades é 10 e cada chamado entra em um único motivo.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> a soma bate com o total e nenhum chamado entrou em dois motivos (o critério de pronto pede isso).</p><p class="test-note"><strong>Testado em 26/10:</strong> tabela correta somando 10, e a IA lembrou que &quot;4 de 10 é pluralidade, não maioria&quot; — cuidado com conclusão apressada.</p></div></details>
+              <details><summary>4. Roteiro de ligação</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: montar um roteiro para ligar e confirmar uma entrega atrasada.
+
+Contexto: ligação para cliente fictícia &quot;Helena&quot;, pedido #5017, sofá, 4 dias de atraso. Ela já abriu um chamado reclamando. Tenho 3 minutos de ligação.
+
+Formato: roteiro com abertura, 2 perguntas essenciais e fechamento com próximo passo e prazo, em tópicos.
+
+Critério de pronto: nenhum tópico depende de promessa que eu não possa cumprir; o cliente termina sabendo o que acontece depois.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> o status real do pedido e o que você pode prometer (data confirmada? só retorno?) antes de discar — o roteiro da IA vai depender disso.</p><p class="test-note"><strong>Testado em 26/10:</strong> roteiro com &quot;antes de discar&quot; (conferir status, definir o que pode prometer), abertura de 30 s e 2 perguntas que evitam nova falha de entrega.</p></div></details>
+              <details><summary>5. Artigo para a base de conhecimento</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: escrever um artigo curto para a base de conhecimento da equipe.
+
+Contexto: política fictícia de troca da loja: 7 dias corridos para troca com nota fiscal; sem nota, vale crédito na loja pelo menor preço dos últimos 30 dias; eletrônicos lacrados só trocam se estiverem com defeito; troca por defeito em até 90 dias é obrigação legal.
+
+Formato: artigo de no máximo 15 linhas, com seção &quot;como atender&quot; passo a passo.
+
+Critério de pronto: um atendente novo consegue seguir sem perguntar para o supervisor; nenhuma regra inventada além das que passei.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> as lacunas que a IA vai apontar — início da contagem dos 7 dias, o que fazer com nota fiscal fora do prazo, prazo do crédito sem nota. Responda e peça para incluir.</p><p class="test-note"><strong>Testado em 26/10:</strong> artigo de 14 linhas só com as regras passadas, e a IA listou as 3 lacunas da política em vez de inventar resposta — exatamente o que o critério de pronto pedia.</p></div></details>
+              <details><summary>6. Resposta padrão para pergunta frequente</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: escrever a resposta padrão para a pergunta mais frequente do chat.
+
+Contexto: pergunta &quot;quanto tempo demora a entrega?&quot; aparece 40% das conversas. Prazos fictícios: capitais 3 dias úteis, interior 5 a 8, com código de rastreio no e-mail em até 24h após o envio.
+
+Formato: resposta de 4 linhas com as duas faixas de prazo e onde ver o rastreio.
+
+Critério de pronto: funciona para as duas faixas de prazo sem eu editar; não promete data exata de chegada.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> de onde contam os dias úteis (compra, pagamento ou envio?) e se o e-mail traz o link ou só o código.</p><p class="test-note"><strong>Testado em 26/10:</strong> 4 linhas prontas para as duas faixas, e a IA perguntou justamente as duas confirmações acima antes de dar o texto como final.</p></div></details>
+              <details><summary>7. Revisar resposta antes de enviar</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: revisar minha resposta antes de enviar para um cliente.
+
+Contexto: cliente pediu cancelamento de um pedido que já foi separado no estoque. Minha resposta: &quot;Infelizmente não dá mais, o sistema não permite cancelamento depois da separação. O senhor pode recusar a entrega quando chegar.&quot; A regra real da empresa: cancelamento é possível até a separação; depois, recusar a entrega gera estorno em até 7 dias úteis.
+
+Formato: lista do que está bom e do que mudar, com a versão corrigida.
+
+Critério de pronto: a versão corrigida explica o caminho do estorno e o prazo, sem &quot;infelizmente&quot; e sem culpar o sistema.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> se o estorno inclui o frete e se há algum passo além de recusar ao entregador (protocolo, aviso) — a IA vai perguntar.</p><p class="test-note"><strong>Testado em 26/10:</strong> 6 ajustes de tom e clareza, versão corrigida pronta, e a pergunta do frete apareceu como &quot;ponto a confirmar antes de enviar&quot;.</p></div></details>
+              <details><summary>8. Traduzir erro do sistema para o cliente</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: traduzir uma mensagem de erro do sistema para a linguagem do cliente.
+
+Contexto: cliente viu na tela: &quot;Erro 402-PG: timeout na autorização de pagamento — gateway indisponível. Tente novamente.&quot; Ele perguntou se foi cobrado duas vezes.
+
+Formato: explicação em 3 linhas, linguagem simples, sem termo técnico.
+
+Critério de pronto: o cliente entende que provavelmente não foi cobrado e o que fazer; sem prometer reembolso imediato.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> o fluxo de estorno para cobrança indevida na sua empresa (a IA não deve prometer &quot;some sozinho&quot; sem isso definido).</p><p class="test-note"><strong>Testado em 26/10:</strong> explicação em 3 linhas sem juridiquês; falou em &quot;reserva temporária&quot; em vez de garantir, e condicionou o estorno ao comprovante.</p></div></details>
+              <p class="role-takeaway"><strong>Regra de ouro destes prompts:</strong> eles <strong>pedem o que conferir</strong> no critério de pronto. É isso que separa &quot;a IA escreveu&quot; de &quot;está pronto para mandar&quot;.</p></div></div>
+          <div class="role-content" id="role-management-content"><h3>Gestão</h3><div id="content-management"><p>8 prompts prontos, no formato do pedido completo. Troque o que está entre colchetes pelos seus dados <strong>fictícios</strong> (nunca dados reais de pessoas), cole e ajuste o que voltar.</p><p class="notice"><strong>Regra fixa:</strong> nunca cole dado de cliente, de pessoa ou segredo da empresa no prompt. Troque nomes e números por versões fictícias antes de colar.</p><p class="small-copy">Todos os nomes, números e situações abaixo são exemplos fictícios. As notas de teste registram os resultados relatados pela equipe que preparou o material.</p>
+              <details><summary>1. Pauta de 1:1</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: preparar uma pauta de 1:1 com um colaborador.
+
+Contexto: Paulo, analista de suporte, 14 meses na equipe. Mês: 96% dos chamados no prazo, 1 reclamação de cliente sobre o tom, e ele pediu para falar sobre virar pleno. Última conversa foi há 1 mês, sobre autonomia.
+
+Formato: pauta em tópicos: 1 ponto de reconhecimento com dado, 1 ponto de atenção com exemplo, 3 perguntas sobre o pedido de promoção.
+
+Critério de pronto: toda afirmação vem de fato observável, não de impressão; a pauta cabe em 1 página.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> a meta da equipe e a média dele nos meses anteriores — sem essa referência, o &quot;96%&quot; não diz se foi bom. Leve o trecho exato do chamado reclamado.</p><p class="test-note"><strong>Testado em 26/10:</strong> pauta de 45 min com tempo por bloco; a IA recusou afirmar padrão de tom com 1 caso só e pediu o texto do chamado antes de opinar.</p></div></details>
+              <details><summary>2. Feedback estruturado</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: escrever um feedback estruturado para um colaborador.
+
+Contexto: Marina, analista, entregou o relatório de fechamento com 2 dias de atraso e sem a aba de devoluções. É a segunda vez no trimestre. Ela é boa na análise, mas o atraso fez o time trabalhar no fim de semana.
+
+Formato: feedback em 3 blocos: Situação, Comportamento, Impacto, e uma pergunta para ela responder.
+
+Critério de pronto: descreve o que aconteceu sem julgar a pessoa; separa o padrão (2 vezes) do incidente; termina com diálogo, não com sermão.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> as datas reais e se ela avisou do atraso — o feedback muda se ela avisou. Preencha os colchetes que a IA vai deixar.</p><p class="test-note"><strong>Testado em 26/10:</strong> blocos Situação/Comportamento/Impacto com &quot;incidente × padrão&quot; separados, e terminou com pergunta aberta (&quot;o que teria facilitado me avisar?&quot;).</p></div></details>
+              <details><summary>3. Relatório semanal</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: transformar os números do mês em um relatório semanal.
+
+Contexto: semana fictícia da operação de atendimento: 312 chamados, 91% resolvidos no primeiro contato, tempo médio 5min48, 12 reclamações (8 sobre prazo de entrega), satisfação 4,4/5. Semana anterior: 298 chamados, 89%, 6min10, 9 reclamações, 4,5/5.
+
+Formato: máximo 12 linhas, com seções Destaques e Pontos de atenção, cada ponto com o número que sustenta.
+
+Critério de pronto: nenhum número sem comparação ou contexto; os pontos de atenção apontam causa provável, não culpa.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> cada número na planilha fonte antes de apresentar — a &quot;causa provável&quot; das reclamações é hipótese, não fato.</p><p class="test-note"><strong>Testado em 26/10:</strong> relatório com todo número comparado à semana anterior; a IA marcou explicitamente o que era causa provável não confirmada.</p></div></details>
+              <details><summary>4. Priorização da semana</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: priorizar a lista de tarefas da semana.
+
+Contexto: 8 tarefas fictícias: (1) responder e-mail de fornecedor, 10 min, baixo impacto; (2) corrigir erro no relatório que a diretoria vê amanhã, 40 min, alto impacto; (3) reorganizar pastas do drive, 60 min, baixo; (4) treinar estagiário no sistema, 90 min, médio impacto e prazo sexta; (5) aprovar 3 orçamentos, 20 min, alto impacto e prazo hoje; (6) reunião de alinhamento, 60 min, médio; (7) atualizar planilha de metas, 30 min, médio; (8) responder cliente importante, 15 min, alto.
+
+Formato: tabela Prioridade | Tarefa | Por quê, e a ordem sugerida de execução.
+
+Critério de pronto: prioriza por impacto e prazo, não por tamanho; nada é descartado, só ordenado.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> os prazos e horários fixos reais (a IA não conhece sua agenda — reuniões fixas mandam no calendário).</p><p class="test-note"><strong>Testado em 26/10:</strong> priorizou por impacto/prazo (orçamentos &gt; relatório da diretoria &gt; cliente) e deixou &quot;reorganizar pastas&quot; para o fim — não por tamanho, por impacto.</p></div></details>
+              <details><summary>5. Análise de planilha</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: analisar uma planilha de vendas e achar padrões.
+
+Contexto: tabela fictícia de vendas da semana por dia (segunda a domingo): seg 42, ter 45, qua 39, qui 41, sex 78, sáb 96, dom 84. A meta diária era 50.
+
+Formato: 5 linhas: o padrão principal, o que chama atenção, 2 hipóteses possíveis, 1 pergunta para investigar.
+
+Critério de pronto: separa fato de hipótese; não inventa causa sem dado.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> se o padrão se repete nas semanas anteriores antes de agir — uma semana não prova padrão.</p><p class="test-note"><strong>Testado em 26/10:</strong> achou a divisão seg–qui × sex–dom (venda ~2x no fim de semana) e separou claramente fato de hipótese, pedindo as semanas anteriores para confirmar.</p></div></details>
+              <details><summary>6. Comunicado de mudança</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: escrever um comunicado de mudança de processo para a equipe.
+
+Contexto: a partir de segunda, todo reembolso acima de R$ 200 passa a precisar de aprovação da supervisão, antes de ser lançado. Motivo: erro de digitação gerou 3 reembolsos errados no mês. A equipe tem 9 pessoas.
+
+Formato: comunicado de no máximo 8 linhas: o que muda, a partir de quando, por quê, e onde tirar dúvida.
+
+Critério de pronto: quem ler entende o que muda na prática sem reler; o tom é direto, sem culpar ninguém.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> a data de início (a IA vai supor) e o canal de dúvidas antes de enviar.</p><p class="test-note"><strong>Testado em 26/10:</strong> comunicado de 5 linhas sem citar quem errou; a IA deixou marcados exatamente os dois pontos para eu confirmar (data, canal).</p></div></details>
+              <details><summary>7. Plano de ação para queda de resultado</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: montar um plano de ação para uma queda de resultado.
+
+Contexto: as vendas da loja caíram 18% no mês. Fatos conhecidos: uma obra na rua reduziu o movimento; dois vendedores saíram e não foram repostos; o concorrente abriu promoção. Não há dado sobre satisfação no período.
+
+Formato: tabela com Hipótese | Como verificar | Primeira ação, e 1 linha de decisão final.
+
+Critério de pronto: toda hipótese tem um jeito de verificar; nenhuma ação é tomada antes de verificar.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> o dado de verificação existe na sua operação (fluxo de entrada, conversão, ticket) — se não, a hipótese fica sem teste.</p><p class="test-note"><strong>Testado em 26/10:</strong> cada hipótese veio com verificação e com a ação condicionada à confirmação — a IA se recusou a agir antes de verificar.</p></div></details>
+              <details><summary>8. Resumo para o superior</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: resumir uma atualização longa para meu superior em 5 linhas.
+
+Contexto: texto fictício de 20 linhas sobre a semana da operação: atraso do fornecedor de embalagens, três pedidos grandes em negociação, dois funcionários de férias na próxima semana, meta do mês em 71%, sistema de ponto com falha na quarta, reunião com o comercial marcada para sexta.
+
+Formato: 5 linhas no máximo, começando pela conclusão, depois o que precisa de decisão do superior.
+
+Critério de pronto: o superior sabe o que decidir sem ler o texto original; nada de detalhe que não mude decisão.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> as alçadas da sua empresa (quem decide o quê) — a IA vai propor decisões e você ajusta ao seu contexto.</p><p class="test-note"><strong>Testado em 26/10:</strong> 5 linhas com conclusão primeiro, 3 decisões propostas e o detalhe sem decisão (falha do ponto) corretamente deixado de fora.</p></div></details>
+              <p class="role-takeaway"><strong>Regra de ouro destes prompts:</strong> o <strong>critério de pronto</strong> pede fato em vez de opinião. É ele que faz a IA devolver &quot;causa provável, não confirmada&quot; em vez de história convincente.</p></div></div>
+          <div class="role-content" id="role-development-content"><h3>Desenvolvimento</h3><div id="content-development"><p>8 prompts prontos, no formato do pedido completo. Troque o que está entre colchetes pelos seus dados <strong>fictícios</strong> (nunca código ou dado de cliente real em ferramenta que a empresa não aprovou), cole e ajuste o que voltar.</p><p class="notice"><strong>Regra fixa:</strong> nunca cole dado de cliente, de pessoa ou segredo da empresa no prompt. Troque nomes e números por versões fictícias antes de colar — e confirme com a empresa quais ferramentas podem receber código.</p><p class="small-copy">Todos os nomes, números e situações abaixo são exemplos fictícios. As notas de teste registram os resultados relatados pela equipe que preparou o material.</p>
+              <details><summary>1. Mudança pequena e delimitada</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: implementar uma mudança pequena e delimitada em uma função de desconto.
+
+Contexto: função atual (fictícia): desconto de 5% para pedidos acima de R$ 200. Nova regra: pedidos acima de R$ 500 ganham 10%, e os demais continuam com 5%. A regra vale para pedidos aprovados, não para orçamentos.
+
+Formato: código da função nova, uma lista de casos de teste com entrada e resultado esperado, e o que pode quebrar.
+
+Critério de pronto: a função velha continua coberta pelos mesmos testes; a mudança não altera o comportamento de pedidos abaixo de R$ 500.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> as suposições que a IA declarar (o que acontece abaixo de R$ 200? e com orçamentos?) — ela avisa, mas a resposta é sua.</p><p class="test-note"><strong>Testado em 26/10:</strong> código com os tiers corretos e casos de teste novos só para a faixa nova; a IA listou 2 suposições antes de entregar.</p></div></details>
+              <details><summary>2. Revisão de mudança (PR)</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: revisar um diff antes de aprovar o merge.
+
+Contexto: diff fictício em uma função de cálculo de frete. Mudança: adicionou taxa de R$ 12 para pedidos abaixo de R$ 100 e mudou a variável de peso de gramas para quilos, dividindo o valor por 1000. Suspeito que há um erro de unidade.
+
+Formato: lista de problemas, cada um com a linha e o porquê, separando bloqueador de sugestão.
+
+Critério de pronto: cada problema é reproduzível a partir do diff; nenhum estilo sem impacto listado como bloqueador.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> o diff tem que ir <strong>colado no prompt</strong>. Sem ele, a revisão não é revisão — é hipótese. A IA vai dizer isso, e está certa.</p><p class="test-note"><strong>Testado em 26/10:</strong> sem o diff, a IA se recusou a apontar linhas e devolveu 3 hipóteses reproduzíveis (divisão no lugar errado, divisão inteira, faixas em gramas). Com o diff colado, vira lista com linha.</p></div></details>
+              <details><summary>3. Casos de teste de uma regra</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: gerar os casos de teste de uma regra de negócio.
+
+Contexto: regra fictícia de prazo de entrega: capitais até 3 dias úteis; interior 5 a 8; pedidos com montagem ganham 2 dias a mais; feriados não contam; prazo começa no dia útil seguinte à aprovação do pagamento.
+
+Formato: tabela de casos de teste: Situação | Entrada | Resultado esperado, cobrindo cada regra e as bordas.
+
+Critério de pronto: um caso para cada regra, um caso de fronteira (ex.: pedido com e sem montagem no mesmo CEP) e um caso inválido.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> as premissas que a IA declarar (dia útil = seg–sex?, &quot;interior 5 a 8&quot; vem de onde?) com quem definiu a regra.</p><p class="test-note"><strong>Testado em 26/10:</strong> tabela completa com regras base, fronteiras e casos inválidos; a IA declarou 3 premissas que a regra não fechava antes de gerar os casos.</p></div></details>
+              <details><summary>4. Explicar código legado</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: explicar um trecho de código legado que ninguém documentou.
+
+Contexto: função fictícia em Python que calcula o prazo de entrega: consulta a tabela de CEPs, aplica regras de capital/interior, soma dias de montagem, e no final subtrai 1 se o dia da aprovação for sexta. O time não sabe por que o &quot;-1 se sexta&quot;.
+
+Formato: explicação em linguagem simples, linha a linha, e uma hipótese sobre o &quot;-1&quot;, marcada como hipótese.
+
+Critério de pronto: alguém que não programa entende o que a função faz; a hipótese não vira fato no texto.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> a hipótese do &quot;-1&quot; no histórico do git (blame/log) antes de mexer ou documentar como fato.</p><p class="test-note"><strong>Testado em 26/10:</strong> explicação linha a linha em linguagem simples e a hipótese do &quot;-1&quot; claramente marcada como não confirmada.</p></div></details>
+              <details><summary>5. Investigar erro antes de corrigir</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: investigar um erro em produção antes de mexer no código.
+
+Contexto: erro fictício no log: &quot;TimeoutError: falha ao conectar no serviço de pagamento após 10s&quot; às 18h42 de sexta, em 34 pedidos seguidos; o serviço de pagamento respondeu normal às 18h45. Primeira vez que aparece.
+
+Formato: 3 hipóteses ordenadas da mais provável para a menos, com o comando ou a consulta que confirma ou descarta cada uma.
+
+Critério de pronto: nenhuma correção de código é proposta antes da hipótese ser confirmada.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> adapte os comandos ao seu ambiente (a IA supõe stack; o critério de pronto segura a correção prematura).</p><p class="test-note"><strong>Testado em 26/10:</strong> 3 hipóteses ordenadas com comando de verificação para cada uma; a IA se recusou a propor correção antes de confirmar.</p></div></details>
+              <details><summary>6. Título e descrição de pull request</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: escrever título e descrição de um pull request.
+
+Contexto: mudança fictícia: a tela de pedidos ganhou filtro por status e a consulta ao banco passou a usar paginação, reduzindo o tempo de resposta de 4s para 0,8s nos testes.
+
+Formato: título de no máximo 70 caracteres, descrição em 4 linhas: o que mudou, por quê, como testar, o que não mudou.
+
+Critério de pronto: alguém que não viu o código decide se quer revisar; o número de desempenho aparece como medida de teste, não como promessa.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> o número de desempenho é do seu ambiente de teste — escreva &quot;medido em [ambiente]&quot; para não virar promessa de produção.</p><p class="test-note"><strong>Testado em 26/10:</strong> título e descrição prontos, com o 4s→0,8s apresentado como medição local, não garantia.</p></div></details>
+              <details><summary>7. Refatorar sem mudar comportamento</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: refatorar uma função sem mudar o comportamento.
+
+Contexto: função fictícia de cálculo de frete com 90 linhas, vários condicionais aninhados e nomes de variáveis como a, b, tmp. Ela tem testes passando e eu não quero quebrar nada.
+
+Formato: versão refatorada, lista do que mudou e por quê, e a lista de testes que devem continuar passando.
+
+Critério de pronto: o comportamento é o mesmo para as mesmas entradas; a versão nova não adiciona regra nova.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> rode os testes atuais antes de começar (baseline) — e cole a função e os testes no prompt, senão a IA vai recusar refatorar código que não viu.</p><p class="test-note"><strong>Testado em 26/10:</strong> a IA se recusou a refatorar sem o código colado e descreveu o processo certo: baseline → testes de caracterização → passos pequenos com teste a cada passo.</p></div></details>
+              <details><summary>8. Requisito em tarefas de 1 dia</summary><div class="prompt-card"><pre class="prompt-template">Objetivo: quebrar um requisito em tarefas pequenas.
+
+Contexto: requisito fictício: &quot;o cliente quer acompanhar o pedido pelo site: ver status, ver código de rastreio e cancelar antes da separação.&quot; O time é pequeno e cada tarefa não pode passar de 1 dia.
+
+Formato: lista de tarefas de no máximo 1 dia cada, ordenada, com o critério de pronto de cada uma.
+
+Critério de pronto: nenhuma tarefa depende de uma decisão de negócio não tomada sem avisar; a primeira tarefa já entrega valor visível.</pre><p class="prompt-check"><strong>Antes de usar, confira:</strong> as decisões de negócio que a IA separar (quais status o cliente vê? cancelamento por item entra?) — decidir antes de codar evita retrabalho.</p><p class="test-note"><strong>Testado em 26/10:</strong> separou 5 decisões de negócio das tarefas, marcou 2 como bloqueantes e colocou como primeira tarefa a página só-leitura que já entrega valor.</p></div></details>
+              <p class="role-takeaway"><strong>Regra de ouro destes prompts:</strong> a IA de desenvolvimento <strong>pede o código de verdade</strong>. Prompt sem diff, sem função, sem log = resposta genérica. Colado o material, ela trabalha; sem ele, ela devolve hipóteses — e diz que são hipóteses. Confie menos quando ela não disser.</p></div></div>
         </fieldset>
       </section>
 
       <section class="section" id="desafio" aria-labelledby="desafio-title">
-        <div class="section-heading"><p class="eyebrow">03 / UM PASSO POR DIA</p><h2 id="desafio-title">Comece pequeno, meça, amplie.</h2><p>Sete dias para experimentar o método no seu trabalho.</p></div>
+        <div class="section-heading"><p class="eyebrow">03 / UM PASSO POR DIA</p><h2 id="desafio-title">Comece pequeno, meça, amplie.</h2><p>Uma ação por dia, em dez minutos, com a ferramenta de IA que você já tem. Cada dia tem “como saber que deu certo” — se não deu, repita o dia antes de seguir.</p></div>
+        <p class="notice"><strong>Regra fixa de todos os dias:</strong> nunca cole dado de cliente, de pessoa ou segredo da empresa. Troque nomes e números por versões fictícias antes de colar.</p>
         <ol class="challenge-grid" id="challenge-content">
-          <li id="challenge-day-1" data-day="1"><p class="eyebrow">DIA 01</p><p class="pending">[[PENDENTE codewhale]]</p></li>
-          <li id="challenge-day-2" data-day="2"><p class="eyebrow">DIA 02</p><p class="pending">[[PENDENTE codewhale]]</p></li>
-          <li id="challenge-day-3" data-day="3"><p class="eyebrow">DIA 03</p><p class="pending">[[PENDENTE codewhale]]</p></li>
-          <li id="challenge-day-4" data-day="4"><p class="eyebrow">DIA 04</p><p class="pending">[[PENDENTE codewhale]]</p></li>
-          <li id="challenge-day-5" data-day="5"><p class="eyebrow">DIA 05</p><p class="pending">[[PENDENTE codewhale]]</p></li>
-          <li id="challenge-day-6" data-day="6"><p class="eyebrow">DIA 06</p><p class="pending">[[PENDENTE codewhale]]</p></li>
-          <li id="challenge-day-7" data-day="7"><p class="eyebrow">DIA 07</p><p class="pending">[[PENDENTE codewhale]]</p></li>
+          <li id="challenge-day-1" data-day="1"><p class="eyebrow">DIA 01</p><h3>Peça uma tarefa pequena com o pedido completo.</h3><p>Escolha uma tarefa real do dia (uma resposta, um resumo, um texto). Escreva o pedido com os 4 campos: objetivo, contexto, formato, critério de pronto.</p><p class="challenge-check"><strong>Como saber que deu certo:</strong> você usou o resultado com no máximo uma edição — ou soube dizer exatamente por que não serviu.</p></li>
+          <li id="challenge-day-2" data-day="2"><p class="eyebrow">DIA 02</p><h3>Confira antes de usar.</h3><p>Pegue o resultado de ontem (ou peça um novo) e confira 3 coisas: um número contra a fonte, o tom contra o canal, e se falta algo que a regra da empresa exige.</p><p class="challenge-check"><strong>Como saber que deu certo:</strong> você achou pelo menos uma coisa para ajustar — ou confirmou as três e sabe dizer por quê.</p></li>
+          <li id="challenge-day-3" data-day="3"><p class="eyebrow">DIA 03</p><h3>Recorte em vez de ampliar.</h3><p>Pegue uma tarefa grande que está na sua lista e recorte um pedaço pequeno e delimitado para a IA fazer (uma tabela com 4 linhas, um parágrafo, uma lista).</p><p class="challenge-check"><strong>Como saber que deu certo:</strong> o pedaço saiu usável de primeira e você sabe qual é o próximo pedaço.</p></li>
+          <li id="challenge-day-4" data-day="4"><p class="eyebrow">DIA 04</p><h3>Pergunte &quot;de onde veio isso?&quot;.</h3><p>Em um resultado da IA, escolha uma afirmação que não veio do que você colou e pergunte: &quot;de onde veio isso? me dá a fonte.&quot;</p><p class="challenge-check"><strong>Como saber que deu certo:</strong> a IA apontou a origem, admitiu que não tem, ou você marcou o trecho como &quot;a confirmar&quot; — e o resto seguiu em uso.</p></li>
+          <li id="challenge-day-5" data-day="5"><p class="eyebrow">DIA 05</p><h3>Peça o mesmo de dois jeitos.</h3><p>Pegue uma tarefa e peça do jeito vago (&quot;me ajuda com X&quot;) e depois com o pedido completo. Compare os dois resultados lado a lado.</p><p class="challenge-check"><strong>Como saber que deu certo:</strong> você consegue apontar a diferença concreta (formato, dono, prazo, tamanho) e explicar a alguém em 1 minuto.</p></li>
+          <li id="challenge-day-6" data-day="6"><p class="eyebrow">DIA 06</p><h3>Decida o que a IA pode e não pode.</h3><p>Liste 3 coisas que você deixa a IA fazer no seu trabalho e 3 que você não deixa (dado de cliente, aprovação, envio, decisão de dinheiro). Escreva como regra para você.</p><p class="challenge-check"><strong>Como saber que deu certo:</strong> cada item tem um &quot;por quê&quot; em uma linha — e você usaria a lista para ensinar um colega.</p></li>
+          <li id="challenge-day-7" data-day="7"><p class="eyebrow">DIA 07</p><h3>Meça o tempo completo.</h3><p>Repita a tarefa do dia 1, cronometrando: tempo até o rascunho e tempo até a entrega de verdade (conferida, ajustada, enviada).</p><p class="challenge-check"><strong>Como saber que deu certo:</strong> você sabe os dois números e sabe onde o tempo foi. Se o tempo completo não caiu, o dia 7 funcionou do mesmo jeito — agora você enxerga onde está o gargalo.</p></li>
         </ol>
+        <p class="challenge-after"><strong>Depois dos 7 dias:</strong> escolha 1 tarefa recorrente da sua semana e torne-a o seu “pedido padrão” — o pedido completo que você usa toda vez. Copie e guarde o pedido em um arquivo local, sem dados pessoais ou de clientes, e melhore um campo por semana.</p>
       </section>
 
       <section class="section" id="demos" aria-labelledby="demos-title">
@@ -137,8 +333,24 @@ Critério de pronto: [o que você vai conferir]</pre>
       </section>
 
       <section class="section" id="faq" aria-labelledby="faq-title">
-        <div class="section-heading"><p class="eyebrow">06 / CONTINUE A CONVERSA</p><h2 id="faq-title">Dúvidas que valem uma pausa.</h2><p>As respostas do evento serão reunidas aqui.</p></div>
-        <div id="faq-content"><p class="pending">[[PENDENTE codewhale]] As 15 perguntas e respostas estão em revisão.</p></div>
+        <div class="section-heading"><p class="eyebrow">06 / CONTINUE A CONVERSA</p><h2 id="faq-title">Dúvidas que valem uma pausa.</h2><p>15 perguntas frequentes para continuar praticando o método.</p></div>
+        <div id="faq-content">
+          <details><summary>A IA vai tirar meu emprego?</summary><p>A IA substitui tarefas, não o trabalho inteiro — e as tarefas que ela substitui são as mais repetitivas. O que muda é o perfil do trabalho: sobe o valor de pedir bem, conferir e decidir. Quem aprende a usar ganha tempo; quem não usa continua fazendo o que a máquina faz mais rápido. O risco real não é a IA — é ficar sem saber usá-la quando o colega souber.</p></details>
+          <details><summary>Posso colar dado de cliente na IA?</summary><p>Regra simples: não, sem autorização da empresa. Troque nomes, números de pedido e telefones por versões fictícias antes de colar. Se a empresa liberar uma ferramenta com contrato e proteção, siga a política dela. Quando houver dúvida entre usar e não usar: não use e pergunte.</p></details>
+          <details><summary>Qual IA devo usar?</summary><p>Não existe &quot;a melhor&quot; — existe a que atende os seus critérios: se tem acesso ao contexto que você precisa, se você consegue conferir o resultado, o que ela pode fazer com o que você cola e quanto custa. Comece pela que a sua empresa já tem ou libera. A ferramenta muda; o método de pedir e conferir, não.</p></details>
+          <details><summary>Quanto custa?</summary><p>Depende da ferramenta e do plano: há versões gratuitas com limites e planos pagos por pessoa. Para começar, a versão gratuita da ferramenta que você já tem costuma bastar. Custo não é só o preço: é também o tempo de conferir e o risco do dado que entra. Antes de pagar, meça se o tempo completo caiu.</p></details>
+          <details><summary>E se ela errar?</summary><p>Ela vai errar — como qualquer colega novo. A diferença é que ela erra com confiança e na velocidade do texto pronto. Por isso os princípios de hoje: pedir com critério de pronto e conferir contra a fonte antes de usar. Erro da IA que você pega na conferência custa minutos; erro que você não confere custa o que o cliente viu.</p></details>
+          <details><summary>Como a empresa controla o uso?</summary><p>O controle começa em regras simples: quais ferramentas podem ser usadas, o que pode entrar nelas e quem aprova o que sai. Ferramentas corporativas têm administração, registro de uso e permissões; ferramentas pessoais, não. Se a sua empresa ainda não tem regra, a regra provisória é a mais conservadora: nada de dado de cliente ou segredo.</p></details>
+          <details><summary>Preciso saber programar?</summary><p>Não. Os princípios de hoje valem para qualquer função: pedir com objetivo e critério, recortar pequeno, conferir contra a fonte. Programar ajuda a conversar com código, mas a maioria do ganho do dia a dia — texto, planilha, resumo, resposta — não exige programação nenhuma.</p></details>
+          <details><summary>Como começo amanhã?</summary><p>Escolha uma tarefa pequena e real de amanhã, escreva o pedido com os quatro campos (objetivo, contexto, formato, critério de pronto) e confira o resultado antes de usar. O kit tem os prompts prontos por função e o desafio de 7 dias, com dez minutos por dia. Não espere a tarefa grande — comece pela que você faria de qualquer jeito.</p></details>
+          <details><summary>A IA guarda o que eu digito?</summary><p>Depende da ferramenta e do plano: algumas usam o que você escreve para melhorar o serviço, outras não, e planos corporativos costumam ter mais proteção. Leia a política de uso da ferramenta que a empresa liberou. A regra que não depende de ler nada: o que não pode vazar, não entra no prompt.</p></details>
+          <details><summary>Posso usar no celular?</summary><p>Sim — as ferramentas de uso geral funcionam no celular, e é onde muito do dia a dia acontece: responder, resumir, rascunhar entre uma coisa e outra. Vale o mesmo método e as mesmas regras de dado. O limite do celular é o tamanho do que você cola e a facilidade de conferir — tarefas maiores ficam melhores no computador.</p></details>
+          <details><summary>E a LGPD?</summary><p>A LGPD trata dado pessoal como responsabilidade de quem decide o uso — e colar dado pessoal numa ferramenta é um uso. Sem uma base legal e sem garantias da ferramenta, o dado não deve entrar. A postura prática: dado pessoal real fica fora do prompt; versões fictícias resolvem a maioria das tarefas. Decisões sobre ferramentas corporativas passam pela empresa, não pelo uso individual.</p></details>
+          <details><summary>Como convenço meu gestor?</summary><p>Não convença com promessa — mostre com um exemplo. Escolha uma tarefa que a equipe faz toda semana, faça uma vez com o pedido completo, meça o tempo completo (rascunho + conferência + ajuste) e apresente o antes e o depois com o que você conferiu. Peça um teste pequeno e reversível, não um projeto. Gestor muda de ideia com evidência, não com entusiasmo.</p></details>
+          <details><summary>Como medir se valeu a pena?</summary><p>Duas medidas simples: o tempo completo da tarefa (do pedido à entrega conferida) e o esforço de revisão (quantas idas e vindas até ficar bom). Meça em uma tarefa recorrente antes de adotar e de novo depois de duas semanas. Se o tempo completo caiu e a revisão ficou mais leve, valeu. Se não caiu, você sabe exatamente onde está o gargalo — e isso também é ganho.</p></details>
+          <details><summary>O que fazer quando a IA &quot;inventa&quot;?</summary><p>A palavra técnica é alucinação: ela gera texto plausível sem fonte. A resposta é sempre a mesma: pedir a fonte (&quot;de onde veio isso? me dá o link&quot;), cruzar com o dado original e, se não houver evidência, marcar como &quot;a confirmar&quot; ou cortar. Quanto mais específico o número que ela afirma, mais obrigatória é a conferência. E quando a IA disser &quot;não tenho esse dado&quot;, premie: é o comportamento que você quer.</p></details>
+          <details><summary>O que nunca devo delegar?</summary><p>Nunca delegue a decisão final — aprovação, envio, dinheiro, o que vai para o cliente com o seu nome. Delegue o rascunho, o resumo, a comparação, a lista de opções; decida você sobre o que sai. E nunca coloque na IA o que não pode vazar: dado de cliente, segredo da empresa, credencial. A fronteira é simples: a IA propõe, você decide — e o que não pode errar, você confere duas vezes.</p></details>
+        </div>
       </section>
 
       <section class="section recording" id="gravacao" aria-labelledby="recording-title"><div><p class="eyebrow">PARA REVER E COMPARTILHAR</p><h2 id="recording-title">A conversa continua.</h2><p>A gravação completa do PisomDay estará aqui depois do evento.</p></div><span class="availability">Em breve</span></section>

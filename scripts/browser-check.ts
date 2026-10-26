@@ -24,6 +24,21 @@ try {
   await expect(page.getByRole("heading", { level: 1 })).toContainText("O método,");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: resolve(output, "mobile.png"), fullPage: true });
+  await expect(page.locator(".pending")).toHaveCount(0);
+  await expect(page.locator("#faq-content details")).toHaveCount(15);
+  for (const role of ["operation", "management", "development"]) {
+    await page.locator(`label[for="role-${role}"]`).click();
+    const content = page.locator(`#role-${role}-content`);
+    await expect(content.locator("details")).toHaveCount(8);
+    await expect(content.locator(".notice")).toBeVisible();
+    await content.evaluate((element) => {
+      for (const detail of element.querySelectorAll("details")) detail.open = true;
+    });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+  }
+  await page.goto(baseUrl);
   await page.keyboard.press("Tab");
   await expect(page.getByRole("link", { name: "Pular para o conteúdo" })).toBeFocused();
 

@@ -53,8 +53,10 @@ para usar outro executável ou `KIT_URL` para conferir outro endereço local.
 - `scripts/`: build, servidor local e verificação dos fluxos no navegador.
 - `tests/`: testes unitários com entradas sintéticas.
 
-Os marcadores `[[PENDENTE codewhale]]` identificam conteúdo editorial não entregue.
-Substitua-os somente pelo conteúdo revisado. Os princípios já vêm da SPEC do evento.
+O conteúdo editorial foi integrado a partir dos arquivos revisados da equipe:
+3 exemplos, 24 prompts por função, desafio de 7 dias e 15 perguntas frequentes.
+As notas de teste reproduzem os relatos do material; não são promessa de resultado.
+Os princípios vêm da SPEC do evento. Preserve os avisos de dados fictícios.
 As demos têm poster e controles, mas nenhum arquivo fictício ou URL quebrada.
 Quando os MP4 chegarem, adicione os arquivos a `public/demos/`, defina o `src`
 relativo em cada vídeo e atualize título, duração e disponibilidade. A numeração
