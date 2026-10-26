@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#06101c">
+    <meta name="description" content="Kit do participante PisomDay: cinco princípios para pedir, conferir e decidir com IA. Modelos de pedido, desafio de sete dias e certificado local.">
+    <title>PisomDay · Kit do participante</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header">
+      <a class="wordmark" href="#metodo">Pisom<span>Day</span><span class="wordmark-caption">KIT DO PARTICIPANTE</span></a>
+      <nav aria-label="Navegação principal">
+        <a href="#metodo">Método</a><a href="#pedido">Pedido completo</a><a href="#para-voce">Para você</a><a href="#desafio">7 dias</a><a href="#demos">Demos</a><a href="#certificado">Certificado</a><a href="#faq">FAQ</a>
+      </nav>
+    </header>
+    <main id="conteudo">
+      <section class="hero section" id="metodo" aria-labelledby="hero-title">
+        <div class="hero-intro">
+          <p class="eyebrow">28 OUT 2026 <span aria-hidden="true">/</span> ACELERAÇÃO DE DESENVOLVIMENTO COM IA</p>
+          <h1 id="hero-title">O método,<br><span>não a ferramenta.</span></h1>
+          <p class="hero-description">Pedir bem. Conferir sempre. Decidir.<br>Leve estes hábitos para o seu trabalho, com a ferramenta que você já tem.</p>
+          <a class="button primary" href="#pedido">Monte seu próximo pedido <span aria-hidden="true">↗</span></a>
+          <p class="hero-note">IA não substitui o trabalho; ela amplifica quem sabe pedir bem, conferir sempre e decidir.</p>
+        </div>
+        <div class="method-panel">
+          <p class="eyebrow">CINCO PRINCÍPIOS PARA LEVAR COM VOCÊ</p>
+          <ol class="principles">
+            <li><span class="principle-number" aria-hidden="true">01</span><div><h2>Meça a entrega, não o rascunho.</h2><p>Conte o tempo de entender, fazer, conferir e entregar.</p></div></li>
+            <li><span class="principle-number" aria-hidden="true">02</span><div><h2><a href="#pedido">Pedido completo: objetivo, contexto, formato, critério de pronto.</a></h2><p>Explique o resultado e como você vai avaliá-lo.</p></div></li>
+            <li><span class="principle-number" aria-hidden="true">03</span><div><h2>Pequeno, delimitado, reversível — com nível de autonomia definido.</h2><p>Defina o que a IA pode fazer e quando deve parar.</p></div></li>
+            <li><span class="principle-number" aria-hidden="true">04</span><div><h2>A IA propõe, a evidência decide.</h2><p>Confira fontes, cálculos e resultados antes de usar.</p></div></li>
+            <li><span class="principle-number" aria-hidden="true">05</span><div><h2>Dados e segurança: o que entra e o que a IA pode fazer.</h2><p>Use dados permitidos e dê apenas as permissões necessárias.</p></div></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section" id="pedido" aria-labelledby="pedido-title">
+        <div class="section-heading"><p class="eyebrow">01 / COLOQUE EM PRÁTICA</p><h2 id="pedido-title">Um pedido que dá direção.</h2><p>Preencha os quatro campos. Antes de copiar, retire dados pessoais, internos ou de clientes.</p></div>
+        <div class="prompt-layout">
+          <form id="prompt-form" class="panel" aria-label="Montar pedido completo">
+            <label for="prompt-objective"><span class="field-number">1</span> Objetivo <span class="field-hint">O que você quer alcançar?</span></label>
+            <textarea id="prompt-objective" name="objective" rows="2" maxlength="3000" placeholder="Descreva a entrega de que você precisa."></textarea>
+            <label for="prompt-context"><span class="field-number">2</span> Contexto <span class="field-hint">O que a IA precisa saber?</span></label>
+            <textarea id="prompt-context" name="context" rows="3" maxlength="5000" placeholder="Informe público, materiais permitidos, limites e o que a IA pode fazer."></textarea>
+            <label for="prompt-format"><span class="field-number">3</span> Formato <span class="field-hint">Como deve vir a resposta?</span></label>
+            <textarea id="prompt-format" name="format" rows="2" maxlength="2000" placeholder="Por exemplo: uma lista, uma tabela ou um rascunho."></textarea>
+            <label for="prompt-criteria"><span class="field-number">4</span> Critério de pronto <span class="field-hint">Como você vai conferir?</span></label>
+            <textarea id="prompt-criteria" name="criteria" rows="3" maxlength="3000" placeholder="Liste o que precisa estar correto e o que não pode ser inventado."></textarea>
+            <div class="action-row"><button class="button primary" id="copy-prompt" type="button" hidden>Copiar pedido</button><p id="copy-status" role="status" aria-live="polite"></p></div>
+            <noscript><p class="notice">Você pode preencher os campos e copiar o texto manualmente. O botão de copiar usa JavaScript.</p></noscript>
+          </form>
+          <aside class="prompt-aside" aria-label="Modelo e exemplos">
+            <h3>O modelo, sempre à mão</h3>
+            <pre class="prompt-template" id="prompt-output" tabindex="0">Objetivo: [o que você quer alcançar]
+
+Contexto: [informações permitidas e limites]
+
+Formato: [como a resposta deve ser entregue]
+
+Critério de pronto: [o que você vai conferir]</pre>
+            <p class="small-copy">Os campos ficam apenas nesta página. Nada é enviado para uma IA automaticamente.</p>
+            <h3>Veja um exemplo da sua rotina</h3>
+            <div id="prompt-examples">
+              <details><summary>Atendimento e operação</summary><p class="pending">[[PENDENTE codewhale]] Exemplo preenchido em revisão.</p></details>
+              <details><summary>Gestão</summary><p class="pending">[[PENDENTE codewhale]] Exemplo preenchido em revisão.</p></details>
+              <details><summary>Desenvolvimento</summary><p class="pending">[[PENDENTE codewhale]] Exemplo preenchido em revisão.</p></details>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="para-voce" aria-labelledby="para-voce-title">
+        <div class="section-heading"><p class="eyebrow">02 / NA SUA ROTINA</p><h2 id="para-voce-title">Seu trabalho é o ponto de partida.</h2><p>Escolha sua área para encontrar pedidos prontos e o que conferir em cada resposta.</p></div>
+        <fieldset class="role-picker"><legend class="sr-only">Escolha a área de atuação</legend>
+          <input type="radio" name="role" id="role-operation" value="operation" checked><label for="role-operation">Atendimento / Operação</label>
+          <input type="radio" name="role" id="role-management" value="management"><label for="role-management">Gestão</label>
+          <input type="radio" name="role" id="role-development" value="development"><label for="role-development">Dev</label>
+          <div class="role-content" id="role-operation-content"><h3>Atendimento e operação</h3><div id="content-operation"><p class="pending">[[PENDENTE codewhale]] Pedidos e critérios de conferência em preparação.</p></div></div>
+          <div class="role-content" id="role-management-content"><h3>Gestão</h3><div id="content-management"><p class="pending">[[PENDENTE codewhale]] Pedidos e critérios de conferência em preparação.</p></div></div>
+          <div class="role-content" id="role-development-content"><h3>Desenvolvimento</h3><div id="content-development"><p class="pending">[[PENDENTE codewhale]] Pedidos e critérios de conferência em preparação.</p></div></div>
+        </fieldset>
+      </section>
+
+      <section class="section" id="desafio" aria-labelledby="desafio-title">
+        <div class="section-heading"><p class="eyebrow">03 / UM PASSO POR DIA</p><h2 id="desafio-title">Comece pequeno, meça, amplie.</h2><p>Sete dias para experimentar o método no seu trabalho.</p></div>
+        <ol class="challenge-grid" id="challenge-content">
+          <li><p class="eyebrow">DIA 01</p><p class="pending">[[PENDENTE codewhale]]</p></li>
+          <li><p class="eyebrow">DIA 02</p><p class="pending">[[PENDENTE codewhale]]</p></li>
+          <li><p class="eyebrow">DIA 03</p><p class="pending">[[PENDENTE codewhale]]</p></li>
+          <li><p class="eyebrow">DIA 04</p><p class="pending">[[PENDENTE codewhale]]</p></li>
+          <li><p class="eyebrow">DIA 05</p><p class="pending">[[PENDENTE codewhale]]</p></li>
+          <li><p class="eyebrow">DIA 06</p><p class="pending">[[PENDENTE codewhale]]</p></li>
+          <li><p class="eyebrow">DIA 07</p><p class="pending">[[PENDENTE codewhale]]</p></li>
+        </ol>
+      </section>
+
+      <section class="section" id="demos" aria-labelledby="demos-title">
+        <div class="section-heading"><p class="eyebrow">04 / VEJA O MÉTODO EM AÇÃO</p><h2 id="demos-title">Da ideia à entrega conferida.</h2><p>As demonstrações serão adicionadas após a gravação. Os tempos abaixo são previstos, sujeitos à edição.</p></div>
+        <div class="demo-grid">
+          <article class="demo"><video controls preload="none" poster="./demos/poster.svg" aria-label="DEV1: Pedido vago e pedido completo"><p>Vídeo em preparação.</p></video><p class="eyebrow">DEV1 · PREVISTO 2:30</p><h3>Pedido vago × pedido completo</h3><p>Mesma tarefa, dois pedidos. Observe o que muda na entrega.</p><p class="availability">Em preparação</p></article>
+          <article class="demo"><video controls preload="none" poster="./demos/poster.svg" aria-label="DEV2: Do plano à revisão"><p>Vídeo em preparação.</p></video><p class="eyebrow">DEV2 · PREVISTO 4:30</p><h3>Do plano à revisão</h3><p>Uma tarefa delimitada passa por planejamento, implementação e evidência.</p><p class="availability">Em preparação</p></article>
+          <article class="demo"><video controls preload="none" poster="./demos/poster.svg" aria-label="DEV3: O teste encontra a lacuna"><p>Vídeo em preparação.</p></video><p class="eyebrow">DEV3 · PREVISTO 2:30</p><h3>O teste encontra a lacuna</h3><p>Um resultado parece pronto. O teste mostra o que falta corrigir.</p><p class="availability">Em preparação</p></article>
+          <article class="demo"><video controls preload="none" poster="./demos/poster.svg" aria-label="DEV4: Instrução escondida no arquivo"><p>Vídeo em preparação.</p></video><p class="eyebrow">DEV4 · PREVISTO 2:00</p><h3>Instrução escondida no arquivo</h3><p>Como reconhecer um dado tentando se passar por uma ordem.</p><p class="availability">Em preparação</p></article>
+          <article class="demo"><video controls preload="none" poster="./demos/poster.svg" aria-label="DD1: O rascunho ainda não é a entrega"><p>Vídeo em preparação.</p></video><p class="eyebrow">DIA A DIA 1 · TEMPO A DEFINIR</p><h3>O rascunho ainda não é a entrega</h3><p>O texto sai rápido. A conferência e as correções também entram na conta.</p><p class="availability">Em preparação</p></article>
+          <article class="demo"><video controls preload="none" poster="./demos/poster.svg" aria-label="DD2: Resumo de reunião"><p>Vídeo em preparação.</p></video><p class="eyebrow">DIA A DIA 2 · PREVISTO 1:30</p><h3>Um resumo com direção</h3><p>Objetivo, contexto, formato e critério de pronto em um resumo de reunião.</p><p class="availability">Em preparação</p></article>
+          <article class="demo"><video controls preload="none" poster="./demos/poster.svg" aria-label="DD3: Briefing delimitado"><p>Vídeo em preparação.</p></video><p class="eyebrow">DIA A DIA 3 · PREVISTO 1:00</p><h3>Um briefing que cabe na tarefa</h3><p>Transforme um pedido delimitado em uma planilha ou apresentação conferível.</p><p class="availability">Em preparação</p></article>
+          <article class="demo"><video controls preload="none" poster="./demos/poster.svg" aria-label="DD4: Conferir a fonte"><p>Vídeo em preparação.</p></video><p class="eyebrow">DIA A DIA 4 · PREVISTO 1:30</p><h3>Antes de usar, confira a fonte</h3><p>Encontre o número sem evidência e confira a informação na origem.</p><p class="availability">Em preparação</p></article>
+        </div>
+      </section>
+
+      <section class="section" id="certificado" aria-labelledby="certificate-title">
+        <div class="section-heading"><p class="eyebrow">05 / SUA PARTICIPAÇÃO</p><h2 id="certificate-title">Seu certificado, no seu navegador.</h2><p>PisomDay · 28 de outubro de 2026 · Carga horária: 1h15.</p></div>
+        <div class="certificate-layout">
+          <div>
+            <form id="certificate-form" class="panel">
+              <label for="participant-name">Seu nome no certificado</label>
+              <input id="participant-name" name="participant" required maxlength="120" autocomplete="name" aria-describedby="certificate-privacy certificate-error" placeholder="Digite seu nome completo">
+              <p id="certificate-privacy" class="small-copy">Seu nome fica apenas neste navegador e não é armazenado. O arquivo é gerado com o nome que você informar.</p>
+              <p id="certificate-error" class="error-message" role="alert" hidden></p>
+              <button type="submit" class="button primary" id="generate-certificate" disabled>Gerar certificado</button>
+              <p id="certificate-status" role="status" aria-live="polite"></p>
+              <div class="action-row"><button type="button" class="button secondary" id="download-certificate" disabled>Baixar PNG</button><button type="button" class="button secondary" id="print-certificate" disabled>Imprimir / PDF</button></div>
+              <noscript><p class="notice">Ative o JavaScript para gerar o certificado no navegador.</p></noscript>
+            </form>
+          </div>
+          <div class="certificate-stage">
+            <div class="certificate-placeholder" id="certificate-placeholder"><p class="eyebrow">CERTIFICADO DE PARTICIPAÇÃO</p><p class="certificate-display-title">PisomDay</p><p>Aceleração de desenvolvimento com IA</p><div class="name-placeholder">Seu nome aparece aqui</div><p class="small-copy">28 de outubro de 2026 · 1h15</p><p class="small-copy">Cainan Araujo · PisomTech</p></div>
+            <canvas id="certificate-canvas" width="1600" height="1131" hidden></canvas>
+            <img id="certificate-preview" width="1600" height="1131" alt="Prévia do certificado gerado" hidden>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="faq" aria-labelledby="faq-title">
+        <div class="section-heading"><p class="eyebrow">06 / CONTINUE A CONVERSA</p><h2 id="faq-title">Dúvidas que valem uma pausa.</h2><p>As respostas do evento serão reunidas aqui.</p></div>
+        <div id="faq-content"><p class="pending">[[PENDENTE codewhale]] As 15 perguntas e respostas estão em revisão.</p></div>
+      </section>
+
+      <section class="section recording" id="gravacao" aria-labelledby="recording-title"><div><p class="eyebrow">PARA REVER E COMPARTILHAR</p><h2 id="recording-title">A conversa continua.</h2><p>A gravação completa do PisomDay estará aqui depois do evento.</p></div><span class="availability">Em breve</span></section>
+    </main>
+    <footer class="site-footer"><a class="wordmark" href="#metodo">Pisom<span>Day</span></a><p>Peça bem. Confira sempre. Decida.</p><p>Sem tracking. Sem cadastro. Feito para levar ao trabalho.</p></footer>
+  </body>
+</html>
